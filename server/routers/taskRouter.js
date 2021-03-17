@@ -3,12 +3,17 @@ const Task = require('../models/Task');
 const router = express.Router();
 const app = express();
 
-app.get('/', async (req, res) => {
+router.get('/', async (req, res) => {
+    const task = new Task({
+        description: "Valer verga",
+        completed: false
+    });
     try {
-        const task = new Task({
-
-        });
+        await task.save();
+        res.status(200).send(task);
     } catch (error) {
         res.status(500).send({ error: error.message });
     }
 });
+
+module.exports = router;

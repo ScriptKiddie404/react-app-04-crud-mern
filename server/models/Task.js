@@ -13,7 +13,8 @@ const TaskSchema = new Schema({
         default: false,
     }
 }, {
-    timestamps: true
+    timestamps: true,
+    versionKey: false
 });
 
 
