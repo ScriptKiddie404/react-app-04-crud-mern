@@ -17,7 +17,6 @@ const App = () => {
         setTaskList(response.data);
     }
 
-
     const onClickButton = async (term) => {
         if (!(term === '')) {
             await axios.post('http://localhost:4000/create-task', { description: term });
