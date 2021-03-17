@@ -30,6 +30,12 @@ const App = () => {
         handleChange();
     };
 
+    const onEdit = async (term, id) => {
+        if (!(term === '')) {
+            await axios.put('http://localhost:4000/edit-task', { id: id, taskName: term });
+        }
+    }
+
 
     return (
         <>
@@ -43,7 +49,11 @@ const App = () => {
                     {
                         taskList.map((task, key) => {
                             return (
-                                <Task taskData={task} key={key} handleChange={handleChange} />
+                                <Task
+                                    taskData={task}
+                                    key={key}
+                                    handleChange={handleChange}
+                                    onEdit={onEdit} />
                             );
                         })
                     }
