@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 import './components/FormTask/FormTask'
@@ -8,15 +8,18 @@ const App = () => {
 
     const [taskList, setTaskList] = useState([]);
 
+    useEffect(() => {
+        const fetchTasks = async () => {
+            const response = await axios.get('http://localhost:4000/get-tasks');
+            setTaskList(response.data);
+        }
+
+        fetchTasks();
+
+    }, [])
+
     const onClickButton = async (term) => {
-        await fetch('http://localhost:4000/create-task', {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ description: term })
-        })
+        await axios.post('http://localhost:4000/create-task', { description: term });
     };
 
     return (
@@ -26,7 +29,18 @@ const App = () => {
                 <span className="title__span">TO DO</span> LIST
             </h1>
             <FormTask onClickButton={onClickButton} />
-
+            <div className="container-test">
+                {
+                    taskList.map((task) => {
+                        return (
+                            <div key={task._id} className="task">
+                                <div>{task.description}</div>
+                                <div>{task.completed}</div>
+                            </div>
+                        )
+                    })
+                }
+            </div>
         </>
     );
 };
