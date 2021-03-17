@@ -9,6 +9,14 @@ const FormTask = ({ onClickButton }) => {
         onClickButton(term);
     }
 
+    const handleKey = (event) => {
+        if (event.key === 'Enter') {
+            handleClick();
+        }
+    }
+
+
+
     return (
         <>
             <div className="form">
@@ -17,7 +25,8 @@ const FormTask = ({ onClickButton }) => {
                     type="text"
                     id="taskName"
                     value={term}
-                    onChange={event => setTerm(event.target.value)} />
+                    onChange={event => setTerm(event.target.value)}
+                    onKeyPress={handleKey} />
                 <button className="form__button" onClick={handleClick}>
                     <i className="fas fa-plus form__button-icon" />ADD TASK
                 </button>

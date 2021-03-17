@@ -9,18 +9,21 @@ const App = () => {
     const [taskList, setTaskList] = useState([]);
 
     useEffect(() => {
-        const fetchTasks = async () => {
-            const response = await axios.get('http://localhost:4000/get-tasks');
-            setTaskList(response.data);
-        }
-
         fetchTasks();
+    }, []);
 
-    }, [])
+    const fetchTasks = async () => {
+        const response = await axios.get('http://localhost:4000/get-tasks');
+        setTaskList(response.data);
+    }
+
 
     const onClickButton = async (term) => {
-        await axios.post('http://localhost:4000/create-task', { description: term });
+        if (!(term === '')) {
+            await axios.post('http://localhost:4000/create-task', { description: term });
+        }
     };
+
 
     return (
         <>
