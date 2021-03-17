@@ -1,6 +1,8 @@
 import React from 'react';
 import './Task.css';
 import Utilities from '../../helpers/Utilities';
+import FadeLoader from "react-spinners/ClipLoader";
+
 
 const Task = ({ taskData }) => {
 
@@ -29,6 +31,7 @@ const Task = ({ taskData }) => {
     return (
         <>
             <div className="task">
+                <div className="spinner"><FadeLoader color={"#FFF"} /></div>
                 <div className="task__name">{taskData.description}</div>
                 <input id={taskData._id} type="text" className="task__input" onKeyPress={handleKey} />
                 <div className="task__buttons">
