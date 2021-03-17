@@ -32,7 +32,7 @@ const Task = ({ taskData, handleChange, onEdit, onDelete }) => {
     const handleDelete = () => {
         loadSpinner(document.querySelector(`.spinner-${taskData._id}`));
         //llamar a DELETE
-        onDelete(taskData.id);
+        onDelete(taskData._id);
         handleChange();
     }
 

@@ -20,7 +20,7 @@ router.post('/create-task', async (req, res) => {
 
 router.get('/get-tasks', async (req, res) => {
     try {
-        const tasks = await Task.find({})
+        const tasks = await Task.find({}).sort({ createdAt: -1 });
         res.status(200).send(tasks);
     } catch (error) {
         res.status(500).send({ error: error.message });
@@ -36,6 +36,16 @@ router.put('/edit-task', async (req, res) => {
         res.status(200).send(task);
     } catch (error) {
         res.status(500).send({ error: error.message });
+    }
+});
+
+router.delete('/delete-task', async (req, res) => {
+    const { id } = req.body;
+    try {
+        const task = await Task.findOneAndDelete(id);
+        res.status(200).send(task);
+    } catch (error) {
+        res.status(500).send({ error: errror.message });
     }
 });
 

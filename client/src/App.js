@@ -39,8 +39,9 @@ const App = () => {
     };
 
     const onDelete = async (id) => {
+        console.log(id);
         if (id) {
-            await axios.delete('http://localhost:400/delete-task', { id });
+            await axios.delete('http://localhost:4000/delete-task', { id });
         }
 
         handleChange();
@@ -55,6 +56,7 @@ const App = () => {
                 </h1>
                 <FormTask onClickButton={onClickButton} />
                 <div className="task-container">
+                    <div className="spinner"></div>
                     {
                         taskList.map((task, key) => {
                             return (
