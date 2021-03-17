@@ -17,9 +17,22 @@ body {
 
 .title {
   margin-top: 1em;
-  font-weight: normal;
+  color: #00adb5;
 }
 
 .title__span {
   font-weight: 900;
+  color: #393e46;
+  margin-right: 0.3em;
+}
+
+.title__icon {
+  margin-right: 0.25em;
+  font-size: 0.7em;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
