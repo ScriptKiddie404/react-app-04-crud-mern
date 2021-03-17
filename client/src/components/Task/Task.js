@@ -19,19 +19,27 @@ const Task = ({ taskData }) => {
         const inputField = document.getElementById(taskData._id);
         if (inputField.value !== '' && event.key === 'Enter') {
             inputField.style.display = 'none';
-            //Llamar a la función para hacer update
+            loadSpinner(document.querySelector(`.spinner-${taskData._id}`))
         }
     }
 
     const handleDelete = () => {
-        console.log("eliminadoo...");
-        //Llamar a la función para eliminar
+        loadSpinner(document.querySelector(`.spinner-${taskData._id}`))
+    }
+
+    const loadSpinner = (spinner) => {
+        // Mostramos el spinner:
+        spinner.style.display = 'flex';
+        // Una vez hecho el fetch removemos el spinner
+        setTimeout(() => {
+            spinner.style.display = 'none';
+        }, 2000);
     }
 
     return (
         <>
             <div className="task">
-                <div className="spinner"><FadeLoader color={"#FFF"} /></div>
+                <div className={`spinner spinner-${taskData._id}`}><FadeLoader color={"#FFF"} /></div>
                 <div className="task__name">{taskData.description}</div>
                 <input id={taskData._id} type="text" className="task__input" onKeyPress={handleKey} />
                 <div className="task__buttons">
