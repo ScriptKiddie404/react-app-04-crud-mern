@@ -4,7 +4,7 @@ import Utilities from '../../helpers/Utilities';
 import FadeLoader from "react-spinners/ClipLoader";
 
 
-const Task = ({ taskData }) => {
+const Task = ({ taskData, handleChange }) => {
 
     const handleEdit = () => {
 
@@ -19,12 +19,18 @@ const Task = ({ taskData }) => {
         const inputField = document.getElementById(taskData._id);
         if (inputField.value !== '' && event.key === 'Enter') {
             inputField.style.display = 'none';
-            loadSpinner(document.querySelector(`.spinner-${taskData._id}`))
+            loadSpinner(document.querySelector(`.spinner-${taskData._id}`));
+            //Llamar a UPDATE
+
+            handleChange();
         }
     }
 
     const handleDelete = () => {
-        loadSpinner(document.querySelector(`.spinner-${taskData._id}`))
+        loadSpinner(document.querySelector(`.spinner-${taskData._id}`));
+        //llamar a DELETE
+
+        handleChange();
     }
 
     const loadSpinner = (spinner) => {

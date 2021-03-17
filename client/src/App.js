@@ -8,10 +8,15 @@ import Task from './components/Task/Task';
 const App = () => {
 
     const [taskList, setTaskList] = useState([]);
+    const [change, setChange] = useState(false);
 
     useEffect(() => {
         fetchTasks();
-    }, []);
+    }, [change]);
+
+    const handleChange = () => {
+        setChange(!change);
+    }
 
     const fetchTasks = async () => {
         const response = await axios.get('http://localhost:4000/get-tasks');
@@ -22,6 +27,7 @@ const App = () => {
         if (!(term === '')) {
             await axios.post('http://localhost:4000/create-task', { description: term });
         }
+        handleChange();
     };
 
 
@@ -37,7 +43,7 @@ const App = () => {
                     {
                         taskList.map((task, key) => {
                             return (
-                                <Task taskData={task} key={key} />
+                                <Task taskData={task} key={key} handleChange={handleChange} />
                             );
                         })
                     }

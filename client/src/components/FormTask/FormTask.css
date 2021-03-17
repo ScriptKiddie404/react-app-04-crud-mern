@@ -48,4 +48,11 @@
 
 .form__button-icon {
   margin-right: 0.5em;
+  border: none;
+  outline: none;
+}
+
+.form__button-icon:focus {
+  outline: none;
+  border: none;
 }

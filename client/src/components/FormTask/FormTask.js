@@ -8,10 +8,15 @@ const FormTask = ({ onClickButton }) => {
 
     const handleClick = () => {
         onClickButton(term);
+        setTerm('');
+        const input = document.querySelector('input');
+        input.focus();
     }
 
     const handleKey = (event) => {
         if (event.key === 'Enter') {
+            const input = document.querySelector('input');
+            input.value = '';
             handleClick();
         }
     }

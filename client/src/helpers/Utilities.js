@@ -8,7 +8,6 @@ const closeAllInputs = () => {
     });
 }
 
-
 const Utilities = {
     closeAllInputs
 }
