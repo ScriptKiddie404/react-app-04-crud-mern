@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './FormTask.css';
+import Utilities from '../../helpers/Utilities';
 
 const FormTask = ({ onClickButton }) => {
 
@@ -24,6 +25,7 @@ const FormTask = ({ onClickButton }) => {
                     id="taskName"
                     value={term}
                     onChange={event => setTerm(event.target.value)}
+                    onFocus={() => Utilities.closeAllInputs()}
                     onKeyPress={handleKey} />
                 <button className="form__button" onClick={handleClick}>
                     <i className="fas fa-plus form__button-icon" />ADD TASK

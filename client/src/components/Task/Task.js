@@ -1,25 +1,16 @@
 import React from 'react';
 import './Task.css';
+import Utilities from '../../helpers/Utilities';
 
 const Task = ({ taskData }) => {
 
     const handleEdit = () => {
 
-        closeAllInputs();
-
+        Utilities.closeAllInputs();
         const inputField = document.getElementById(taskData._id);
         inputField.style.display = 'block';
         inputField.focus();
 
-    }
-
-    const closeAllInputs = () => {
-        const inputs = Array.from(document.querySelectorAll('input'));
-        inputs.forEach(input => {
-            if (input.classList.contains('task__input')) {
-                input.style.display = 'none';
-            }
-        });
     }
 
     const handleKey = (event) => {
