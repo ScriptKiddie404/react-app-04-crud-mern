@@ -3,6 +3,7 @@ const closeAllInputs = () => {
     inputs.forEach(input => {
         if (input.classList.contains('task__input')) {
             input.style.display = 'none';
+            input.value = '';
         }
     });
 }
