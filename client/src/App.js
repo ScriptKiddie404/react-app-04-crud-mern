@@ -6,10 +6,13 @@ import FormTask from './components/FormTask/FormTask';
 
 const App = () => {
 
-    const onClickButton = async (term) => {
-        const response = axios.post();
-    };
+    const [taskList, setTaskList] = useState([]);
 
+    const onClickButton = async (term) => {
+        await axios.post('http://localhost:4000/create-task', {
+            description: term
+        });
+    };
 
     return (
         <>
@@ -17,7 +20,7 @@ const App = () => {
                 <i className="fas fa-tasks title__icon" />
                 <span className="title__span">TO DO</span> LIST
             </h1>
-            <FormTask />
+            <FormTask onClickButton={onClickButton} />
 
         </>
     );

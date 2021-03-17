@@ -3,6 +3,7 @@
 // ======================================================================= //
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const port = process.env.PORT || 4000;
 // ======================================================================= //
 
@@ -21,6 +22,8 @@ const TaskRouter = require('./routers/taskRouter');
 //General:
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+//Cos:
+app.use(cors);
 //Routers:
 app.use(TaskRouter);
 // ======================================================================= //

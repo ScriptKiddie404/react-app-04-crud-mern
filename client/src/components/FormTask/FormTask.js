@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import './FormTask.css';
 
-const FormTask = () => {
+const FormTask = ({ onClickButton }) => {
 
     const [term, setTerm] = useState('');
 
     const handleClick = () => {
-        console.log(term);
+        onClickButton(term);
     }
 
     return (
