@@ -9,9 +9,14 @@ const App = () => {
     const [taskList, setTaskList] = useState([]);
 
     const onClickButton = async (term) => {
-        await axios.post('http://localhost:4000/create-task', {
-            description: term
-        });
+        await fetch('http://localhost:4000/create-task', {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ description: term })
+        })
     };
 
     return (
