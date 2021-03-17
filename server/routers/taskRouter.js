@@ -3,10 +3,10 @@ const Task = require('../models/Task');
 const router = express.Router();
 const app = express();
 
-router.get('/', async (req, res) => {
+router.post('/create-task', async (req, res) => {
 
     try {
-        res.send('enviando datos...');
+        res.status(201).send('enviando datos...');
     } catch (error) {
         res.status(500).send({ error: error.message });
     }
