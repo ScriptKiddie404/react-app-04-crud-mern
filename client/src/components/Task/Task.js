@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Task.css';
 import Utilities from '../../helpers/Utilities';
 import FadeLoader from "react-spinners/ClipLoader";
 
 
-const Task = ({ taskData, handleChange, onEdit }) => {
+const Task = ({ taskData, handleChange, onEdit, onDelete }) => {
+
+    const [term, setTerm] = useState('');
 
     const handleEdit = () => {
 
@@ -17,20 +19,20 @@ const Task = ({ taskData, handleChange, onEdit }) => {
 
     const handleKey = (event) => {
         const inputField = document.getElementById(taskData._id);
-        if (inputField.value !== '' && event.key === 'Enter') {
-            inputField.style.display = 'none';
-            const task = inputField.value;
-            //Llamar a UPDATE
-            onEdit(task, taskData._id);
+        if (term && event.key === 'Enter') {
             loadSpinner(document.querySelector(`.spinner-${taskData._id}`));
-            handleChange();
+            //Llamar a UPDATE
+            onEdit(term, taskData._id);
+            inputField.style.display = 'none';
         }
     }
+
+
 
     const handleDelete = () => {
         loadSpinner(document.querySelector(`.spinner-${taskData._id}`));
         //llamar a DELETE
-
+        onDelete(taskData.id);
         handleChange();
     }
 
@@ -40,7 +42,7 @@ const Task = ({ taskData, handleChange, onEdit }) => {
         // Una vez hecho el fetch removemos el spinner
         setTimeout(() => {
             spinner.style.display = 'none';
-        }, 2000);
+        }, 1500);
     }
 
     return (
@@ -48,7 +50,12 @@ const Task = ({ taskData, handleChange, onEdit }) => {
             <div className="task">
                 <div className={`spinner spinner-${taskData._id}`}><FadeLoader color={"#FFF"} /></div>
                 <div className="task__name">{taskData.description}</div>
-                <input id={taskData._id} type="text" className="task__input" onKeyPress={handleKey} />
+                <input id={taskData._id}
+                    type="text"
+                    value={term}
+                    onChange={event => setTerm(event.target.value)}
+                    className="task__input"
+                    onKeyPress={handleKey} />
                 <div className="task__buttons">
                     <button onClick={handleDelete} className="task__button"><i className="fas fa-times task__button-icon" /></button>
                     <button onClick={handleEdit} className="task__button"><i className="fas fa-edit" /></button>

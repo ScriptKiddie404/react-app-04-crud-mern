@@ -15,6 +15,7 @@ const App = () => {
     }, [change]);
 
     const handleChange = () => {
+        fetchTasks();
         setChange(!change);
     }
 
@@ -32,10 +33,18 @@ const App = () => {
 
     const onEdit = async (term, id) => {
         if (!(term === '')) {
-            await axios.put('http://localhost:4000/edit-task', { id: id, taskName: term });
+            await axios.put('http://localhost:4000/edit-task', { id, taskName: term });
         }
-    }
+        handleChange();
+    };
 
+    const onDelete = async (id) => {
+        if (id) {
+            await axios.delete('http://localhost:400/delete-task', { id });
+        }
+
+        handleChange();
+    }
 
     return (
         <>
@@ -53,7 +62,8 @@ const App = () => {
                                     taskData={task}
                                     key={key}
                                     handleChange={handleChange}
-                                    onEdit={onEdit} />
+                                    onEdit={onEdit}
+                                    onDelete={onDelete} />
                             );
                         })
                     }

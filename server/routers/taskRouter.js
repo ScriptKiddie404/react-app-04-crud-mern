@@ -33,6 +33,7 @@ router.put('/edit-task', async (req, res) => {
         const task = await Task.findById(id);
         task.description = taskName;
         await task.save();
+        res.status(200).send(task);
     } catch (error) {
         res.status(500).send({ error: error.message });
     }
