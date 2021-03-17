@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import './components/FormTask'
-import FormTask from './components/FormTask';
+import './components/FormTask/FormTask'
+import FormTask from './components/FormTask/FormTask';
 
 const App = () => {
     return (
