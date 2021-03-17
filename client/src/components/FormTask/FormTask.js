@@ -15,8 +15,6 @@ const FormTask = ({ onClickButton }) => {
         }
     }
 
-
-
     return (
         <>
             <div className="form">

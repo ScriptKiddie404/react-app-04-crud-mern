@@ -1,5 +1,6 @@
 .task {
-  background-color: #00adb5;
+  /* background-color: #00adb5; */
+  background-color: #393e46;
   color: white;
   margin: 0.5em;
   padding: 1em;
@@ -10,6 +11,13 @@
   flex-direction: column;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.task:hover {
+  transform: scale(1.05);
+  transition: all 200ms ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 20px 40px,
+    rgba(0, 0, 0, 0.23) 0px 12px 12px;
 }
 
 .task__buttons {
@@ -42,7 +50,10 @@
 }
 
 .task__button:hover {
+  color: #00adb5;
   cursor: pointer;
+  transform: scale(1.5);
+  transition: all 200ms ease-in-out;
 }
 
 .task__input {
