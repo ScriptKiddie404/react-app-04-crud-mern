@@ -4,7 +4,7 @@ import Utilities from '../../helpers/Utilities';
 import FadeLoader from "react-spinners/ClipLoader";
 
 
-const Task = ({ taskData, handleChange, onEdit, onDelete }) => {
+const Task = ({ taskData, onEdit, onDelete }) => {
 
     const [term, setTerm] = useState('');
 
@@ -31,9 +31,7 @@ const Task = ({ taskData, handleChange, onEdit, onDelete }) => {
 
     const handleDelete = () => {
         loadSpinner(document.querySelector(`.spinner-${taskData._id}`));
-        //llamar a DELETE
         onDelete(taskData._id);
-        handleChange();
     }
 
     const loadSpinner = (spinner) => {
@@ -42,7 +40,7 @@ const Task = ({ taskData, handleChange, onEdit, onDelete }) => {
         // Una vez hecho el fetch removemos el spinner
         setTimeout(() => {
             spinner.style.display = 'none';
-        }, 1500);
+        }, 500);
     }
 
     return (

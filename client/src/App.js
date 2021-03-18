@@ -5,6 +5,8 @@ import './components/FormTask/FormTask'
 import FormTask from './components/FormTask/FormTask';
 import Task from './components/Task/Task';
 
+const URL = `https://task-mern.herokuapp.com`;
+
 const App = () => {
 
     const [taskList, setTaskList] = useState([]);
@@ -15,33 +17,31 @@ const App = () => {
     }, [change]);
 
     const handleChange = () => {
-        fetchTasks();
         setChange(!change);
     }
 
     const fetchTasks = async () => {
-        const response = await axios.get('http://localhost:4000/get-tasks');
+        const response = await axios.get(`${URL}/get-tasks`);
         setTaskList(response.data);
     }
 
     const onClickButton = async (term) => {
         if (!(term === '')) {
-            await axios.post('http://localhost:4000/create-task', { description: term });
+            await axios.post(`${URL}/create-task`, { description: term });
         }
         handleChange();
     };
 
     const onEdit = async (term, id) => {
         if (!(term === '')) {
-            await axios.put('http://localhost:4000/edit-task', { id, taskName: term });
+            await axios.put(`${URL}/edit-task`, { id, taskName: term });
         }
         handleChange();
     };
 
     const onDelete = async (id) => {
-        console.log(id);
         if (id) {
-            await axios.delete('http://localhost:4000/delete-task', { id });
+            await axios.delete(`${URL}/delete-task/${id}`);
         }
 
         handleChange();
@@ -50,13 +50,12 @@ const App = () => {
     return (
         <>
             <div className="app">
-                <h1 className={'title flex'}>
-                    <i className="fas fa-tasks title__icon" />
-                    <span className="title__span">TO DO</span> LIST
-                </h1>
+
+                <h1 className={'title flex'}><i className="fas fa-tasks title__icon" /><span className="title__span">TASK</span> LIST</h1>
+
                 <FormTask onClickButton={onClickButton} />
+
                 <div className="task-container">
-                    <div className="spinner"></div>
                     {
                         taskList.map((task, key) => {
                             return (
